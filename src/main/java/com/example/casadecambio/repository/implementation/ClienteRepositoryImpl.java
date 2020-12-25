@@ -32,7 +32,7 @@ public class ClienteRepositoryImpl implements ClienteRepository {
     }
 
     @Override
-    public List<Cliente> findByCpf(Long cpf) {
+    public List<Cliente> findByCpf(String cpf) {
         return repositoryJpa.findByCpfOrderByNomeAsc(cpf);
     }
 }

@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface ClienteRepositoryJpa extends JpaRepository<Cliente, Long> {
 
-    List<Cliente> findByCpfOrderByNomeAsc(Long cpf);
+    List<Cliente> findByCpfOrderByNomeAsc(String cpf);
 }

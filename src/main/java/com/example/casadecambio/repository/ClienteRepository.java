@@ -12,5 +12,5 @@ public interface ClienteRepository {
 
     List<Cliente> findAll();
 
-    List<Cliente> findByCpf(Long cpf);
+    List<Cliente> findByCpf(String cpf);
 }

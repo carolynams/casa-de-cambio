@@ -23,7 +23,7 @@ public class Cliente {
 
     private String nome;
 
-    private Long cpf;
+    private String cpf;
 
     @JsonFormat(pattern = "dd-MM-yyyy")
     private Date dataDeNascimento;

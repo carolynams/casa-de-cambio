@@ -11,7 +11,7 @@ import java.util.Date;
 public class ClienteDTO {
 
     private String nome;
-    private Long cpf;
+    private String cpf;
     private Date dataDeNascimento;
     private Conta conta;
 }
