@@ -1,10 +1,10 @@
-package com.example.casadecambio.port.adapter.persistence.repository;
+package com.example.casadecambio.repository.jpa;
 
-import com.example.casadecambio.domain.model.Cliente;
+import com.example.casadecambio.model.Cliente;
 import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface ClienteRepositoryJpa extends JpaRepository<Cliente, Long> {
 
-    List<Cliente> findByCpf(String cpf);
+    List<Cliente> findByCpfOrderByNomeAsc(Long cpf);
 }

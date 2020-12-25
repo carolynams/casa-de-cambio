@@ -1,7 +1,8 @@
-package com.example.casadecambio.port.adapter.persistence.repository;
+package com.example.casadecambio.repository.implementation;
 
-import com.example.casadecambio.domain.model.Cliente;
-import com.example.casadecambio.domain.model.repository.ClienteRepository;
+import com.example.casadecambio.model.Cliente;
+import com.example.casadecambio.repository.ClienteRepository;
+import com.example.casadecambio.repository.jpa.ClienteRepositoryJpa;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -11,7 +12,7 @@ import java.util.Optional;
 @Repository
 public class ClienteRepositoryImpl implements ClienteRepository {
 
-//    @Autowired
+    @Autowired
     private ClienteRepositoryJpa repositoryJpa;
 
     @Override
@@ -26,7 +27,12 @@ public class ClienteRepositoryImpl implements ClienteRepository {
     }
 
     @Override
-    public List<Cliente> findByCpf(String cpf) {
-        return repositoryJpa.findByCpf(cpf);
+    public List<Cliente> findAll() {
+        return repositoryJpa.findAll();
+    }
+
+    @Override
+    public List<Cliente> findByCpf(Long cpf) {
+        return repositoryJpa.findByCpfOrderByNomeAsc(cpf);
     }
 }
