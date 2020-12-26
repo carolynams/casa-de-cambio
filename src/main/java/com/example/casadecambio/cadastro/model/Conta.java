@@ -1,4 +1,4 @@
-package com.example.casadecambio.model;
+package com.example.casadecambio.cadastro.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -10,8 +10,6 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-
-import static java.lang.Math.random;
 
 @Data
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
@@ -38,7 +36,11 @@ public class Conta {
     @OneToMany(mappedBy = "conta", cascade = CascadeType.ALL)
     private List<Cliente> clientes;
 
-    public Conta() {
+    public Conta(Long agencia, Long conta, String senha, BigDecimal saldo) {
+        this.agencia = agencia;
+        this.conta = conta;
+        this.senha = senha;
+        this.saldo = saldo;
         this.clientes = new ArrayList<>();
         this.dataDeCriacao = LocalDateTime.now();
     }

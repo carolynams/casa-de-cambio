@@ -1,11 +1,12 @@
-package com.example.casadecambio.repository.implementation;
+package com.example.casadecambio.cadastro.repository.implementation;
 
-import com.example.casadecambio.model.Cliente;
-import com.example.casadecambio.repository.ClienteRepository;
-import com.example.casadecambio.repository.jpa.ClienteRepositoryJpa;
+import com.example.casadecambio.cadastro.repository.jpa.ClienteRepositoryJpa;
+import com.example.casadecambio.cadastro.model.Cliente;
+import com.example.casadecambio.cadastro.repository.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -33,6 +34,7 @@ public class ClienteRepositoryImpl implements ClienteRepository {
 
     @Override
     public List<Cliente> findByCpf(String cpf) {
-        return repositoryJpa.findByCpfOrderByNomeAsc(cpf);
+        List<Cliente> foundCpf = repositoryJpa.findByCpf(cpf).orElse(new ArrayList<>());
+        return foundCpf;
     }
 }

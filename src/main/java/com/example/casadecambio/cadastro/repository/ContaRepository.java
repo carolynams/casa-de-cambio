@@ -1,6 +1,6 @@
-package com.example.casadecambio.repository;
+package com.example.casadecambio.cadastro.repository;
 
-import com.example.casadecambio.model.Conta;
+import com.example.casadecambio.cadastro.model.Conta;
 
 import java.util.List;
 import java.util.Set;

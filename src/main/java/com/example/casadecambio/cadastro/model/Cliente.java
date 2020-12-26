@@ -1,12 +1,13 @@
-package com.example.casadecambio.model;
+package com.example.casadecambio.cadastro.model;
 
-import com.example.casadecambio.model.dto.ClienteDTO;
+import com.example.casadecambio.cadastro.model.dto.ClienteDTO;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 import javax.persistence.*;
-import java.util.Date;
+import javax.validation.constraints.NotNull;
+import java.time.LocalDate;
 
 import static javax.persistence.FetchType.LAZY;
 import static org.springframework.beans.BeanUtils.copyProperties;
@@ -21,16 +22,25 @@ public class Cliente {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotNull
     private String nome;
 
+    @NotNull
     private String cpf;
 
     @JsonFormat(pattern = "dd-MM-yyyy")
-    private Date dataDeNascimento;
+    private LocalDate dataDeNascimento;
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = LAZY)
     @JoinColumn(name = "conta_id")
     private Conta conta;
+
+    public Cliente(String nome, String cpf, LocalDate dataDeNascimento, Conta conta) {
+        this.nome = nome;
+        this.cpf = cpf;
+        this.dataDeNascimento = dataDeNascimento;
+        this.conta = conta;
+    }
 
     public Cliente() {
     }

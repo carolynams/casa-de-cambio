@@ -1,6 +1,6 @@
-package com.example.casadecambio.repository.jpa;
+package com.example.casadecambio.cadastro.repository.jpa;
 
-import com.example.casadecambio.model.Conta;
+import com.example.casadecambio.cadastro.model.Conta;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Set;
