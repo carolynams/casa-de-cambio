@@ -51,4 +51,8 @@ public class ClienteService {
             throw new DataIntegrityViolationException(DataIntegrityViolationException.CPF_INVALIDO);
         }
     }
+
+    public List<Cliente> findByCpf(String cpf) {
+        return clienteRepository.findByCpf(cpf);
+    }
 }

@@ -1,8 +1,8 @@
 package com.example.casadecambio.cadastro.repository.implementation;
 
-import com.example.casadecambio.cadastro.repository.jpa.ClienteRepositoryJpa;
 import com.example.casadecambio.cadastro.model.Cliente;
 import com.example.casadecambio.cadastro.repository.ClienteRepository;
+import com.example.casadecambio.cadastro.repository.jpa.ClienteRepositoryJpa;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
