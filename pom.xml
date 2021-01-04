@@ -9,9 +9,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.example</groupId>
-    <artifactId>casa-de-cambio-cadastro</artifactId>
+    <artifactId>casa-de-cambio-bitcoin</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>casa-de-cambio-cadastro</name>
+    <name>casa-de-cambio-bitcoin</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>
@@ -86,15 +86,27 @@
         </dependency>
 
         <dependency>
-            <groupId>br.com.caelum.stella</groupId>
-            <artifactId>caelum-stella-bean-validation</artifactId>
-            <version>2.1.2</version>
-        </dependency>
-
-        <dependency>
             <groupId>javax.validation</groupId>
             <artifactId>validation-api</artifactId>
             <version>2.0.1.Final</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webflux</artifactId>
+            <version>5.3.2</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-webflux</artifactId>
+            <version>2.4.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.projectreactor</groupId>
+            <artifactId>reactor-core</artifactId>
+            <version>3.4.1</version>
         </dependency>
 
     </dependencies>
