@@ -6,6 +6,7 @@ import com.example.casadecambio.model.dto.CompraDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.math.BigDecimal;
@@ -24,12 +25,9 @@ public class CompraService {
     private WebClient webClient;
 
     @Autowired
-    private ClienteService clienteService;
+    private SaldoService saldoService;
 
     @Autowired
-    private BitcoinService bitcoinService;
-
-   @Autowired
     public CompraService() {
         this.webClient = WebClient.create(LOCALHOST + PORT_8082);
     }
@@ -43,35 +41,45 @@ public class CompraService {
                 .bodyToMono(CompraDTO.class);
     }
 
-    public Mono<CompraDTO> tryBuyBitcoin(CompraDTO compraDTO) {
-        BitcoinDTO bitcoin = bitcoinService.getBitcoinPrice().block();
+//    public Mono<CompraDTO> tryBuyBitcoin(CompraDTO compraDTO) {
+//        BitcoinDTO bitcoin = bitcoinService.getBitcoinPrice().block();
+//
+//        return this.saldoService.getSaldo(compraDTO.getCpf())
+//                .flatMap(saldoDTO -> {
+//                    BigDecimal getSaldoDoCliente = saldoDTO.getValor();
+//                    double valorAtualDoBitcoinFormatado = (bitcoin.getData().getAmount().doubleValue() *
+//                            compraDTO.getQuantidadeDeBitcoins().doubleValue());
+//
+//                    if (valorAtualDoBitcoinFormatado >= getSaldoDoCliente.floatValue()) {
+//                        throw new DataIntegrityViolationException(DataIntegrityViolationException.SALDO_INSUFICIENTE);
+//                    }
+//
+//                    BigDecimal novoSaldo = getSaldoDoCliente
+//                            .setScale(3, HALF_UP)
+//                            .add(valueOf(valorAtualDoBitcoinFormatado).setScale(3, HALF_UP).negate());
+//
+//                    saldoDTO.setValor(novoSaldo);
+//                    compraDTO.setValorDaCompra(valueOf(valorAtualDoBitcoinFormatado));
+//                    buyBitcoin(compraDTO);
+//                    saldoService.atualizarSaldo(compraDTO.getCpf(), novoSaldo);
+//                    return getAndBuyBitcoinPurchaseValue(compraDTO);
+//                });
+//    }
 
-        this.clienteService.getClientInformations(compraDTO.getCpf())
-                .map(clienteDTO -> {
-                    BigDecimal getSaldoDoCliente = clienteDTO.getConta().getSaldo();
-                    if (bitcoin.getData().getAmount().floatValue() >= getSaldoDoCliente.floatValue()) {
-                        throw new DataIntegrityViolationException(DataIntegrityViolationException.SALDO_INSUFICIENTE);
-                    }
-
-                    double valorAtualDoBitcoinFormatado = (bitcoin.getData().getAmount().doubleValue() * compraDTO.getQuantidadeDeBitcoins().doubleValue());
-
-                    BigDecimal novoSaldo = getSaldoDoCliente
-                            .setScale(3, HALF_UP)
-                            .add(valueOf(valorAtualDoBitcoinFormatado).setScale(3, HALF_UP).negate());
-
-                    clienteDTO.getConta().setSaldo(novoSaldo);
-
-                    clienteService.update(clienteDTO, clienteDTO.getId());
-                    return clienteDTO;
-                });
-        return buyBitcoin(compraDTO);
+    public Mono<CompraDTO> getAndBuyBitcoinPurchaseValue(CompraDTO compraDTO) {
+        return webClient
+                .post()
+                .uri(COMPRA)
+                .body(Mono.just(compraDTO), CompraDTO.class)
+                .retrieve()
+                .bodyToMono(CompraDTO.class);
     }
 
-    public Mono<CompraDTO> getCompraDetails(String cpf) {
+    public Flux<CompraDTO> getCompraDetails(String cpf) {
         return webClient
                 .get()
                 .uri(COMPRA + "/" + cpf)
                 .retrieve()
-                .bodyToMono(CompraDTO.class);
+                .bodyToFlux(CompraDTO.class);
     }
 }
