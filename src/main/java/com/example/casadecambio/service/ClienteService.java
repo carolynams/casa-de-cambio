@@ -6,16 +6,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 
+import static com.example.casadecambio.utils.UrlHelper.*;
+
 @Service
 public class ClienteService {
 
-    private final String LOCALHOST = "http://localhost";
-    private final String PORT_8080 = ":8080";
-    private final String CLIENTE = "/cliente";
-    private final String SAVE = "/save";
-    private final String UPDATE = "/update";
-    private final String SAVE_CLIENT = LOCALHOST + PORT_8080 + CLIENTE + SAVE;
-    private final String UPDATE_CLIENT = LOCALHOST + PORT_8080 + CLIENTE + UPDATE;
 
     private WebClient webClient;
 
