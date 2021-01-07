@@ -1,12 +1,13 @@
-package com.example.casadecambio.bitcoin.model;
+package com.example.casadecambio.model.dto;
 
 import lombok.EqualsAndHashCode;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 @lombok.Data
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class Data {
+public class DataDTO {
 
     private BigDecimal amount;
 
@@ -14,11 +15,11 @@ public class Data {
 
     private String base;
 
-    public Data() {
+    public DataDTO() {
     }
 
-    public Data(BigDecimal amount, String currency, String base) {
-        this.amount = amount;
+    public DataDTO(BigDecimal amount, String currency, String base) {
+        this.amount = amount.setScale(3, RoundingMode.HALF_UP);
         this.currency = currency;
         this.base = base;
     }

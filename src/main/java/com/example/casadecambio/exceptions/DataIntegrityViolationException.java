@@ -1,4 +1,4 @@
-package com.example.casadecambio.bitcoin.exceptions;
+package com.example.casadecambio.exceptions;
 
 public class DataIntegrityViolationException extends RuntimeException {
 

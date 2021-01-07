@@ -1,10 +1,10 @@
-package com.example.casadecambio.bitcoin;
+package com.example.casadecambio;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class CasaDeCambioBitcoinApplicationTests {
+class CasaDeCambioApplicationTests {
 
     @Test
     void contextLoads() {

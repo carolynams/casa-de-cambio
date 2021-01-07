@@ -1,4 +1,4 @@
-package com.example.casadecambio.bitcoin;
+package com.example.casadecambio;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -1,4 +1,4 @@
-package com.example.casadecambio.bitcoin.model;
+package com.example.casadecambio.model.dto;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -7,14 +7,14 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class Bitcoin {
+public class BitcoinDTO {
 
-    private Data data;
+    private DataDTO data;
 
-    public Bitcoin() {
+    public BitcoinDTO() {
     }
 
-    public Bitcoin(Data data) {
+    public BitcoinDTO(DataDTO data) {
         this.data = data;
     }
 }

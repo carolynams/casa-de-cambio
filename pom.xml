@@ -9,9 +9,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.example</groupId>
-    <artifactId>casa-de-cambio-bitcoin</artifactId>
+    <artifactId>casa-de-cambio</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>casa-de-cambio-bitcoin</name>
+    <name>casa-de-cambio</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>
