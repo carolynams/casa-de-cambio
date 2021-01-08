@@ -342,6 +342,26 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Obtem os detalhes da compra por CPF",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8083/compra/102.663.661-19",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8083",
+							"path": [
+								"compra",
+								"102.663.661-19"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
