@@ -13,4 +13,9 @@ public class ClienteDTO {
 
     public ClienteDTO() {
     }
+
+    public ClienteDTO(String nome, String cpf) {
+        this.nome = nome;
+        this.cpf = cpf;
+    }
 }
