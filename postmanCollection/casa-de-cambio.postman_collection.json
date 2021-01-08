@@ -1,0 +1,496 @@
+{
+	"info": {
+		"_postman_id": "aa26426c-7865-4b28-8817-e7c38824dbe1",
+		"name": "casa-de-cambio",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Cliente",
+			"item": [
+				{
+					"name": "Salva o cliente 1",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"cpf\": \"102.663.619-19\",\r\n  \"nome\": \"Carolyna Mantovani de Souza\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8083/cliente/save",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8083",
+							"path": [
+								"cliente",
+								"save"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Salva o cliente 2",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"cpf\": \"617.287.489-68\",\r\n  \"nome\": \"Almi Luis de Souza\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8083/cliente/save",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8083",
+							"path": [
+								"cliente",
+								"save"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Encontra o cliente por cpf",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "cpf",
+								"value": "1",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8083/cliente/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8083",
+							"path": [
+								"cliente",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualiza o cliente",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "id",
+								"value": "1",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"cpf\": \"102.663.619-19\",\r\n  \"nome\": \"Carolyna Mantovani de Souza\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8083/cliente/update/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8083",
+							"path": [
+								"cliente",
+								"update",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Saldo",
+			"item": [
+				{
+					"name": "Cria Saldo com valor Zero para o cliente 1",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "cpf",
+								"value": "{{cpf}}",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8083/saldo/save/102.663.619-19",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8083",
+							"path": [
+								"saldo",
+								"save",
+								"102.663.619-19"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cria Saldo com valor Zero para o cliente 2",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "cpf",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8083/saldo/save/617.287.489-68",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8083",
+							"path": [
+								"saldo",
+								"save",
+								"617.287.489-68"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtem o saldo do cliente 1",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "cpf",
+								"value": "{{cpf}}",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8083/saldo/102.663.619-19",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8083",
+							"path": [
+								"saldo",
+								"102.663.619-19"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtem o saldo do cliente 2",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "cpf",
+								"value": "{{cpf}}",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8083/saldo/617.287.489-68",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8083",
+							"path": [
+								"saldo",
+								"617.287.489-68"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Tranfere saldo de um cliente para outro",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "{{cpfOrigem}}",
+								"value": "102.663.619-19",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "{{cpfDestino}}",
+								"value": "617.287.489-68",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "{{valor}}",
+								"value": "1975.14",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8081/saldo/transferencia/102.663.619-19/617.287.489-68/1975.14",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"saldo",
+								"transferencia",
+								"102.663.619-19",
+								"617.287.489-68",
+								"1975.14"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualiza o Saldo do Cliente",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "{{cpf}}",
+								"value": "102.663.619-19",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "{{valor}}",
+								"value": "567784.72",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8083/saldo/update/102.663.619-19/467784.72",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8083",
+							"path": [
+								"saldo",
+								"update",
+								"102.663.619-19",
+								"467784.72"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Bitcoin",
+			"item": [
+				{
+					"name": "Obtem a cotação atual do bitcoin",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8083/bitcoin/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8083",
+							"path": [
+								"bitcoin",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Compra o bitcoin Cliente 1",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"cpf\": \"102.663.619-19\",\r\n  \"quantidadeDeBitcoins\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8083/compra/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8083",
+							"path": [
+								"compra",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Compra o bitcoin Cliente 2",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"cpf\": \"617.287.489-68\",\r\n  \"quantidadeDeBitcoins\": 0.32\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8083/compra/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8083",
+							"path": [
+								"compra",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Investimento",
+			"item": [
+				{
+					"name": "Obtem o Lucro do Cliente 1",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "cpf",
+								"value": "102.663.619-19",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8083/investimento/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8083",
+							"path": [
+								"investimento",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtem o Lucro do Cliente 2",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "cpf",
+								"value": "{{cpf}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8083/investimento/{{cpf}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8083",
+							"path": [
+								"investimento",
+								"{{cpf}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
