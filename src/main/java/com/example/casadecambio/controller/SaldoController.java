@@ -40,9 +40,4 @@ public class SaldoController {
         return service.getSaldo(cpf);
     }
 
-    @PostMapping("/update/saldo/{cpf}")
-    @ApiOperation("Atualiza o saldo do cliente")
-    public Mono<SaldoDTO> afterBuyBitcoinUpdateClientSaldo(@PathVariable String cpf) {
-        return service.afterBuyBitcoinUpdateClientSaldo(cpf);
-    }
 }

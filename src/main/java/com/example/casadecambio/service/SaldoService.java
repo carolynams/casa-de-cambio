@@ -66,42 +66,4 @@ public class SaldoService {
                 .retrieve()
                 .bodyToMono(SaldoDTO.class);
     }
-
-    public Mono<SaldoDTO> afterBuyBitcoinUpdateClientSaldo(String cpf) {
-        BitcoinDTO bitcoin = bitcoinService.getBitcoinPrice().block();
-        Flux<CompraDTO> compraDetails = compraService.getCompraDetails(cpf);
-
-        getGastosComBitcoin(cpf, bitcoin, compraDetails);
-        return getSaldo(cpf);
-    }
-
-    private void getGastosComBitcoin(String cpf, BitcoinDTO bitcoin, Flux<CompraDTO> compraDetails) {
-        BigDecimal valorToTalCompra = ZERO;
-        List<BigDecimal> compras = new ArrayList<>();
-        compraDetails.map(compraDTO -> {
-            compras.add(compraDTO.getValorDaCompra());
-            for (int i = 0; i < compras.size(); i++) {
-                valorToTalCompra.add(compras.get(i));
-            }
-            updateSaldo(cpf, bitcoin, valorToTalCompra);
-            return valorToTalCompra;
-        });
-    }
-
-    private void updateSaldo(String cpf, BitcoinDTO bitcoin, BigDecimal valorToTalCompra) {
-        getSaldo(cpf).map(saldo -> {
-            BigDecimal getSaldoDoCliente = saldo.getValor();
-            double valorAtualDoBitcoinFormatado = bitcoin.getData().getAmount().doubleValue() - valorToTalCompra.doubleValue();
-
-            if (valorAtualDoBitcoinFormatado >= getSaldoDoCliente.floatValue()) {
-                throw new DataIntegrityViolationException(DataIntegrityViolationException.SALDO_INSUFICIENTE);
-            }
-            BigDecimal novoSaldo = getSaldoDoCliente
-                    .setScale(3, HALF_UP)
-                    .add(valueOf(valorAtualDoBitcoinFormatado).setScale(3, HALF_UP).negate());
-
-            saldo.setValor(novoSaldo);
-            return atualizarSaldo(cpf, novoSaldo);
-        });
-    }
 }

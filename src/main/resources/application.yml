@@ -1,0 +1,21 @@
+server:
+  port: 8083
+
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: cliente
+          uri: http://localhost:8080/
+          predicates:
+            - Path = /cliente/**
+        - id: saldo
+          uri: http://localhost:8081/
+          predicates:
+            - Path = /saldo/**
+        - id: bitcoin
+          uri: http://localhost:8082/
+          predicates:
+            - Path = /bitcoin/**
+            - Path = /compra/**
+            - Path = /investimento/**
